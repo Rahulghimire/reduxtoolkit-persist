@@ -4,10 +4,15 @@ import { remove } from "../store/cartSlice";
 const Cart = () => {
   const products = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const items = useSelector((state) => state.cart);
 
   const handleRemove = (productId) => {
     dispatch(remove(productId));
   };
+
+  if (items.length === 0) {
+    return <div>Your Cart is Empty</div>;
+  }
   return (
     <div>
       <h3 className="my-5 text-center text-3xl text-bold">Cart</h3>
